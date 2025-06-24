@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/SmokingProject
+/API/bin/Debug/net8.0
+/API/obj
+/Domain/bin/Debug/net8.0
+/Domain/obj
+/Repository/bin/Debug/net8.0
+/Repository/obj
