@@ -10,3 +10,7 @@
 /Repository/bin/Debug/net8.0
 /Repository/obj
 /.vs/ProjectEvaluation
+/EmailService/bin/Debug/net8.0
+/EmailService/obj
+/HTMLEmail/bin/Debug/net8.0
+/HTMLEmail/obj
