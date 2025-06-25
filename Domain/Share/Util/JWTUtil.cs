@@ -1,4 +1,5 @@
 ﻿using Domain.Config;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,16 +16,16 @@ public static class JWTUtil
         _jwtSettings = settings;
     }
 
-    public static async Task<string> GenerateToken(string userId, string email, string role = "User")
+    public static async Task<string> GenerateToken(Users user)
     {
         if (_jwtSettings == null)
             throw new InvalidOperationException("JWT settings not configured.");
 
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, userId),
-            new Claim(JwtRegisteredClaimNames.Email, email),
-            new Claim(ClaimTypes.Role, role),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(ClaimTypes.Role, user.Role.ToString()),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 

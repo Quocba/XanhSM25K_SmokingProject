@@ -34,7 +34,7 @@ namespace API.Controllers
         }
 
         [HttpPut("active-account")]
-        public async Task<IActionResult>ActiveAccount([FromQuery] string token)
+        public async Task<IActionResult>ActiveAccount([FromQuery]string token)
         {
             try
             {
@@ -58,6 +58,21 @@ namespace API.Controllers
                     Message = "Internal Server Error",
                     Error = ex.Message
                 });
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody]LoginRequest request)
+        {
+            try
+            {
+                var response = await _authenicationRepository.Login(request);
+                return StatusCode(response.StatusCode, response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("[Login API] " + ex.Message, ex.StackTrace);
+                return StatusCode(500, ex.ToString());
             }
         }
 

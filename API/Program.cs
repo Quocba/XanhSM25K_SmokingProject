@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using CloudinaryDotNet;
+using Domain;
 using Domain.Config;
 using EmailService.Config;
 using EmailService.Implement;
@@ -6,6 +7,7 @@ using EmailService.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using OhBau.Service.CloudinaryService;
 using Repository.Implement;
 using Repository.Interface;
 using Serilog;
@@ -40,6 +42,23 @@ builder.Services.AddDbContext<DBContext>(options =>
 
 builder.Services.Configure<SendMailConfig>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+builder.Services.AddSingleton(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    return new Account(
+        configuration["Cloudinary:CloudName"],
+        configuration["Cloudinary:ApiKey"],
+        configuration["Cloudinary:Secret"]);
+});
+
+builder.Services.AddSingleton(sp =>
+{
+    var account = sp.GetRequiredService<Account>();
+    return new Cloudinary(account);
+});
+
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 var jwtSection = builder.Configuration.GetSection("JwtSettings");
 builder.Services.Configure<JwtSettings>(jwtSection);
@@ -95,6 +114,8 @@ builder.Services.AddAuthentication(options =>
 
 // Repository Scope
 builder.Services.AddScoped<IAuthenicationRepository, AuthenicationRepository>();   
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();

@@ -19,7 +19,7 @@ namespace Domain.Entities
         [ForeignKey("UserId")]
         public virtual Users User { get; set; }
 
-        public virtual ICollection<BlogImage> BlogImages { get; set; } = new List<BlogImage>();
+        public virtual ICollection<BlogImage>? BlogImages { get; set; } = new List<BlogImage>();
 
     }
 }
