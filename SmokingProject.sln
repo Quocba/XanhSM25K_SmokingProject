@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "EmailServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTMLEmail", "HTMLEmail\HTMLEmail.csproj", "{BD2D4690-2783-450F-919B-ED1743142867}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayOSService", "PayOSService\PayOSService.csproj", "{E164ED15-2533-4908-B39E-A23960873AB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BD2D4690-2783-450F-919B-ED1743142867}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD2D4690-2783-450F-919B-ED1743142867}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD2D4690-2783-450F-919B-ED1743142867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E164ED15-2533-4908-B39E-A23960873AB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E164ED15-2533-4908-B39E-A23960873AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E164ED15-2533-4908-B39E-A23960873AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E164ED15-2533-4908-B39E-A23960873AB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

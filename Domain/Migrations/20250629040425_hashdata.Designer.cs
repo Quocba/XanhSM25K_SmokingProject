@@ -4,6 +4,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20250629040425_hashdata")]
+    partial class hashdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,31 +328,6 @@ namespace Domain.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Transaction", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<Guid>("BookingId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("Transaction");
-                });
-
             modelBuilder.Entity("Domain.Entities.Users", b =>
                 {
                     b.Property<Guid>("Id")
@@ -468,7 +446,7 @@ namespace Domain.Migrations
             modelBuilder.Entity("Domain.Entities.CenterImages", b =>
                 {
                     b.HasOne("Domain.Entities.Center", "Center")
-                        .WithMany("Images")
+                        .WithMany()
                         .HasForeignKey("CenterId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -487,25 +465,9 @@ namespace Domain.Migrations
                     b.Navigation("Center");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Transaction", b =>
-                {
-                    b.HasOne("Domain.Entities.Bookings", "Bookings")
-                        .WithMany()
-                        .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Bookings");
-                });
-
             modelBuilder.Entity("Domain.Entities.Blog", b =>
                 {
                     b.Navigation("BlogImages");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Center", b =>
-                {
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

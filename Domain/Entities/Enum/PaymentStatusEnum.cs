@@ -12,6 +12,7 @@ namespace Domain.Entities.Enum
         Completed = 1,
         Failed = 2,
         Refunded = 3,
-        Cancelled = 4
+        Cancelled = 4,
+        Paid = 5
     }
 }

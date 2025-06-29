@@ -40,5 +40,6 @@ namespace Domain.Entities
         public Guid UserId { get;set; }
         [ForeignKey("UserId")]
         public virtual Users User { get; set; }
+        public virtual ICollection<CenterImages> Images { get; set; }
     }
  }

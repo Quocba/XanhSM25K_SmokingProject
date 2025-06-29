@@ -23,5 +23,10 @@ namespace Domain.Share.Util
             using var reader = new StreamReader(stream ?? throw new InvalidOperationException("Stream is null"));
             return reader.ReadToEnd();
         }
+
+        public static long GenerateOrderCode()
+        {
+            return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        }
     }
 }

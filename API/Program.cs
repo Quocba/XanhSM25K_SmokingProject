@@ -7,7 +7,10 @@ using EmailService.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.OpenApi.Models;
 using OhBau.Service.CloudinaryService;
+using PayOSService.Config;
+using PayOSService.Services;
 using Repository.Implement;
 using Repository.Interface;
 using Serilog;
@@ -19,9 +22,37 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "Your API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Nhập 'Bearer {token}' vào đây"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
 
 var webHookId = builder.Configuration["Discord:WebHookId"]!;
 var webHookToken = builder.Configuration["Discord:WebHookToken"];
@@ -108,15 +139,23 @@ builder.Services.AddAuthentication(options =>
             context.Response.ContentType = "application/json";
             return context.Response.WriteAsync("{\"error\":\"Bạn không có quyền truy cập vào tài nguyên này.\"}");
         }
-
     };
 });
 
 // Repository Scope
 builder.Services.AddScoped<IAuthenicationRepository, AuthenicationRepository>();   
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
-
+builder.Services.AddScoped<ICenterRepository, CenterRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IPayOSService, PayOSService.Services.PayOSService>();
 builder.Services.AddAuthorization();
+
+//PayOs Config
+builder.Services.Configure<PayOSConfig>(
+    builder.Configuration.GetSection(PayOSConfig.ConfigName));
+builder.Services.AddHttpClient<IPayOSService, PayOSService.Services.PayOSService>();
+builder.Services.Configure<PayOSConfig>(builder.Configuration.GetSection("PayOS"));
 
 var app = builder.Build();
 

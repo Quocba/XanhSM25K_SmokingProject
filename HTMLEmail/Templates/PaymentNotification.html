@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <title>Thông Báo Thanh Toán</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f0f2f5;
+            color: #2f2f2f;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .card {
+            max-width: 640px;
+            background: #fff;
+            margin: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #00c853, #64dd17);
+            color: white;
+            padding: 28px;
+            text-align: center;
+        }
+
+            .card-header h2 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+        .card-body {
+            padding: 28px 32px;
+        }
+
+        .intro {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: #e0fbe5;
+            border-left: 4px solid #00c853;
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 10px;
+        }
+
+            .highlight p {
+                margin: 10px 0;
+                font-size: 15px;
+            }
+
+            .highlight .label {
+                font-weight: bold;
+            }
+
+        .status {
+            background: #fff7e6;
+            border-left: 4px solid #ff9800;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border-radius: 10px;
+            color: #8a6d1f;
+            font-size: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            padding: 20px 0 28px;
+        }
+
+        .emoji {
+            font-size: 18px;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h2>🎉 Thông Báo Thanh Toán</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="intro">
+                <p><span class="emoji">📣</span>[[thongbao]] khóa học <strong>cai thuốc lá</strong> tại Trung Tâm Nguyễn Thành Vinh.</p>
+                <p><span class="emoji">🚭</span>Bỏ thuốc hôm nay – Khỏe mạnh ngày mai!</p>
+            </div>
+
+            <div class="highlight">
+                <p><span class="emoji">📘</span><span class="label">Tên khóa học:</span> [[CourseTitle]]</p>
+                <p><span class="emoji">⏳</span><span class="label">Thời lượng:</span> [[Duration]]</p>
+                <p><span class="emoji">💵</span><span class="label">Học phí:</span> [[Price]] VNĐ</p>
+                <p><span class="emoji">📍</span><span class="label">Địa điểm:</span> [[Location]]</p>
+            </div>
+
+            <div class="status">
+                <span class="emoji">💳</span><span class="label">Tình trạng thanh toán:</span> <strong>[[PaymentStatus]]</strong>
+            </div>
+
+            <div class="intro" style="margin-top: 24px;">
+                <p><span class="emoji">📞</span>Chúng tôi sẽ liên hệ bạn sớm để hướng dẫn các bước tiếp theo.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2025 Trung tâm Nguyễn Thành Vinh. Hành trình không khói thuốc bắt đầu từ hôm nay!
+        </div>
+    </div>
+</body>
+</html>

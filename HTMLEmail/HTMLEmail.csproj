@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <None Remove="RegisterActiveEmail.html" />
+    <None Remove="Templates\BookingNotification.html" />
+    <None Remove="Templates\PaymentNotification.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Templates\BookingNotification.html" />
+    <EmbeddedResource Include="Templates\PaymentNotification.html" />
     <EmbeddedResource Include="Templates\RegisterActiveEmail.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

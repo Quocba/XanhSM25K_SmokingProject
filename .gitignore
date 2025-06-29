@@ -14,3 +14,8 @@
 /EmailService/obj
 /HTMLEmail/bin/Debug/net8.0
 /HTMLEmail/obj
+/API/bin/Release/net8.0
+/Domain/bin/Release/net8.0
+/PayOSService/bin
+/PayOSService/obj
+/Repository/bin/Release/net8.0

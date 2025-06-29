@@ -8,9 +8,10 @@ namespace Domain.Entities.Enum
 {
     public enum CenterType
     {
-        Public = 1,        // Government-run center
-        Private = 2,       // Privately operated center
-        Partnership = 3,   // Public-private collaboration
-        Other = 4          // Other/unspecified type
+        Public,     // Công lập
+        Private,    // Tư nhân
+        NGO,        // Phi chính phủ
+        Military,   // Quân đội (nếu có)
+        Other       // Khác
     }
 }
